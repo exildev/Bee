@@ -1,0 +1,12 @@
+<template is="auto-binding">
+    <div relative>
+        <core-icon-button id="trigger" icon="account-circle"></core-icon-button>
+        <core-dropdown relatedTarget="{{$.trigge}}">
+            <core-menu>
+                <paper-item class="cambio_clave">Cambiar Contraseña</paper-item>
+                <paper-item src="usr/logout/do"><a href="{% url 'usr.views.logout' %}">Cerrar Sesión</a>
+                </paper-item>
+            </core-menu>
+        </core-dropdown>
+    </div>
+</template>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mostrar Peticion</title>
+            <script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.js"></script>
+    <script src="{{ STATIC_URL }}js/dataTables.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}js/tabla.js" type="text/javascript"></script>
+	</head>
+    <script type="text/javascript">
+        $(document).on('ready',function(){
+
+        });
+    </script>
+	<body>
+        <table id="tabla" class="table">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for software in s %}
+                    <tr>
+                        <td>
+                            <img src="{{MEDIA_URL}}{{software.imagen}}" width="100px">
+                        </td>
+                        <td>
+                            <h3>{{software.nombre}} </h3>
+                        </td>
+                        <td>
+                            <p>
+                                {{software.descripcion}}
+                            </p>
+                        </td>
+                        <td>
+                            <input type="hidden" id="req" name="req" value="{{ software.pk }}">
+                            <input type="hidden" name ="estado" value="{{ software.estado }}">
+                            <input type="hidden" name="resp" value="{{ software.id_res}}">
+                            <div class="center estado">
+                                <span class="center">
+                                    {{ software.case}}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+	</body>
+</html>

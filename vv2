@@ -1,0 +1,11 @@
+﻿
+CREATE OR REPLACE VIEW vista_requerimiento AS 
+ SELECT row_number() OVER () AS id, r.id AS requerimiento_id, r.descripcion, 
+    v.id AS verbo_id, c.id AS complemento_id, 
+    (v.nombre::text || '-'::text) || c.nombre::text AS keyword
+   FROM bee_requerimiento r
+   JOIN bee_requerimiento_horaciones rh ON rh.requerimiento_id = r.id
+   JOIN bee_horacion h ON rh.horacion_id = h.id
+   JOIN bee_verbo v ON h.verbo_id = v.id
+   JOIN bee_horacion_complementos hc ON hc.horacion_id = h.id
+   JOIN bee_complemento c ON hc.complemento_id = c.id;

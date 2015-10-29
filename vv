@@ -1,0 +1,15 @@
+﻿
+CREATE OR REPLACE VIEW vista_peticion AS 
+ SELECT row_number() OVER () AS id, p.id AS peticion_id, p.texto, 
+    v.id AS verbo_id, c.id AS complemento_id, 
+    (v.nombre::text || '-'::text) || c.nombre::text AS keyword
+   FROM bee_peticion p
+   JOIN bee_peticion_horaciones ph ON ph.peticion_id = p.id
+   JOIN bee_horacion h ON ph.horacion_id = h.id
+   JOIN bee_verbo v ON h.verbo_id = v.id
+   JOIN bee_horacion_complementos hc ON hc.horacion_id = h.id
+   JOIN bee_complemento c ON hc.complemento_id = c.id;
+
+ALTER TABLE vista_peticion
+  OWNER TO postgres;
+

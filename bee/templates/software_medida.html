@@ -1,0 +1,14 @@
+<form action="/solicitar/software/" method="post" id="form">
+    {%csrf_token%}
+    <ul>
+        <li>
+            <div id="describa">Describa su software a la medida:</div>
+            <textarea placeholder="Ingrese la descripción de lo que necesita para solucionar sus requerimientos." id="texto" name="descripcion" required></textarea>
+        </li>
+        <li layout horizontal reverse>
+            <paper-button id="btn-buscar"> <input type="submit" value="Solicitar" class="botones"></paper-button>
+            <paper-button ><input type="reset" value="Reestablecer" class="botones"></paper-button>
+        </li> 
+    </ul>
+</form>
+<script type="text/javascript" src="{{STATIC_URL}}js/buscar.js"></script>

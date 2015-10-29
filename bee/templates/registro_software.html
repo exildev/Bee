@@ -1,0 +1,29 @@
+
+<!--link rel="import" href="../bower_components/paper-button/paper-button.html"-->
+<script>
+    function add_software_envio(){
+	    var form=document.querySelector('ex-dialog::shadow ex-load::shadow #form');
+        $(form).ajaxSubmit(function (){
+            $('#buscar').load("/vista/registrar/software/",function(){
+                cargarSofware();
+            });
+        });
+        close_soft();
+    }
+
+    function close_soft(){
+	    var d= $('#dialog1').get(0);
+	    d.toggle();
+    }
+</script>
+<div id="sub_cuerpo">
+	<div id="contenedor" horizontal layout>
+		<ex-dialog id="dialog1" url="/form/agregar/software/" head="Agregar Sotfware" fab="Agregar" icon="add">
+		    <div horizontal layout reverse>
+		        <paper-button onclick="add_software_envio()">Aceptar</paper-button>
+		        <paper-button onclick="close_soft()">Cancelar</paper-button>
+		    </div>
+		</ex-dialog>
+	</div>
+	<div id ="contenedor_cuerpo"></div>
+</div>

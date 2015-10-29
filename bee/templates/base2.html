@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <script src="{{STATIC_URL}}bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="{{STATIC_URL}}lib.html">
+        <script type="text/javascript" src="{{STATIC_URL}}js/tabla/jquery.js"></script>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/base.css">
+    <link rel="stylesheet" href="{{  STATIC_URL }}css/jquery-ui.css">
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.js"></script>
+    <!--script type="text/javascript" src="{{ STATIC_URL }}js/cambiar_clave.js"></script-->
+    <script>
+        function modificar_pass(){
+            $.post( "/usr/add/cliente/", $('ex-dialog#pass::shadow ex-load::shadow #form').serialize(),function(data){
+                if(data[0].r){
+                    close_pass();
+                }else{
+                    $('ex-dialog#pass::shadow ex-load::shadow #form').empty().append(data);
+                }
+            });
+        }
+        
+        function close_pass(){
+    	    var d= $('#pass').get(0);
+    	    d.toggle();
+        }
+        function cargando(){
+            $('#pg').toggleClass("on");
+        }
+        document.addEventListener('polymer-ready',function(){
+            var dp = document.getElementById('dp');
+            var nav = document.getElementById('navicon');
+            nav.addEventListener('click', function(){
+                dp.togglePanel();
+            });    
+        });
+        
+    </script>
+    {% block script %}{% endblock %}
+    {% block css %}{% endblock %}
+    <title>BEE</title>
+</head>
+
+<body fullbleed layout vertical>
+    <!--base2-->
+    <core-drawer-panel id="dp">
+        <core-header-panel flex drawer>
+            <core-toolbar>
+                <div><img src="{{STATIC_URL}}logo.png"></div>
+            </core-toolbar>
+            <div>
+                <core-menu selected="0">
+                    {% block menu %}{%endblock %}
+                </core-menu>
+            </div>
+        </core-header-panel>
+        <core-header-panel flex main>
+            <core-toolbar>
+                <core-icon icon="menu" id="navicon"></core-icon>
+                <div>BEE</div>
+                <span flex></span>
+                <ex-dialog id="pass" url="/usr/pass/cambio/" head="Cambiar clave" icon="add">
+        		    <div horizontal layout reverse>
+        		        <paper-button onclick="modificar_pass()">Aceptar</paper-button>
+        		        <paper-button onclick="close_pass()">Cancelar</paper-button>
+        		    </div>
+        		</ex-dialog>
+                <ex-user-menu>
+                    <paper-item onclick="close_pass()">Cambiar Contraseña</paper-item>
+                    <paper-item src="usr/logout/do"><a href="{% url "usr.views.logout" %}">Cerrar Sesión</a></paper-item>
+                </ex-user-menu>
+                <paper-progress id="pg" class="bottom fit" indeterminate></paper-progress>
+            </core-toolbar>
+            <div id="buscar" class="content">
+                {% block contenido %}{% endblock %} 
+                {% block popup %}{% endblock%}
+            </div>
+        </core-header-panel>
+    </core-drawer-panel>
+</body>
+
+</html>

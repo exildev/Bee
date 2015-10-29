@@ -1,0 +1,17 @@
+<form action="/agregar/software/" enctype="multipart/form-data" method="post" id="form">
+	{%csrf_token%}
+	<ul>
+		<li>
+			<label>Nombre:</label>
+			<input type="name" name="nombre">
+		</li>
+		<li>
+			<label>Imagen:</label>
+			<input type="file" name="imagen">
+		</li>
+		<li>
+			<div>Descripción:</div>
+			<textarea type="te" name="descripcion" cols="38" rows="10"></textarea>
+		</li>
+	</ul>
+</form>

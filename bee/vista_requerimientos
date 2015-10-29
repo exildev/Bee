@@ -1,0 +1,21 @@
+﻿drop view vista_requerimiento;
+create view vista_requerimiento as 
+select 
+row_number() over() as id,
+r.id as requerimiento_id,
+r.descripcion,
+v.id as verbo_id,
+c.id as complemento_id,
+v.nombre || '-' || c.nombre as keyword
+from bee_requerimiento as r 
+join bee_requerimiento_horaciones as rh 
+on (rh.requerimiento_id = r.id)
+join bee_horacion as h
+on (rh.horacion_id = h.id)
+join bee_verbo as v
+on (h.verbo_id = v.id)
+join bee_horacion_complementos as hc
+on (hc.horacion_id = h.id)
+join bee_complemento as c
+on (hc.complemento_id = c.id)
+;

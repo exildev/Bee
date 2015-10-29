@@ -1,0 +1,31 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="../../bower_components/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="../../bower_components/core-menu/core-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<polymer-element name="ex-user-menu">
+    <template>
+        <style>
+            :host paper-menu-button:focus{
+                 outline: none;
+            }    
+        </style>
+        <paper-menu-button>
+            <core-icon-button icon="more-vert" noink></core-icon-button>
+            <paper-dropdown halign="right" class="dropdown">
+                <core-menu id="m" class="menu" on-core-select="{{selectAction}}">
+                    <content></content>
+                </core-menu>
+            </paper-dropdown>
+        </paper-menu-button>
+    </template>
+    <script>
+        Polymer('ex-user-menu',{
+            selectAction: function(){
+                this.$.m.selected = null;
+            }
+        });
+    </script>
+</polymer-element>

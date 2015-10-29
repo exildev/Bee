@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/estilo.css">
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
+    <link rel="stylesheet" href="{{  STATIC_URL }}css/jquery-ui.css">
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/cambiar_clave.js"></script>
+    {% block script %}{% endblock %}
+    {% block css %}{% endblock %}
+    <title>Bee</title>
+</head>
+<body>
+    <div id="menu">
+        <ul>
+            <li>BEE</li>
+        </ul>
+        <div id="sesion">
+             <h2><img src="{{STATIC_URL}}images/user.png" alt="sesion"></h2>
+                <ul>
+                    <li class="cambio_clave">Cambiar Contraseña</li>
+                    <li src="usr/logout/do"><a href="{% url "usr.views.logout" %}">Cerrar Sesión</a></li>
+                </ul>
+        </div>
+    </div>
+    <div id="content">
+        <aside id="tools">
+            {% block menu %}
+            {%  endblock %}
+        </aside>
+        <div id="buscar">
+            {% block contenido %}
+            {% endblock %}
+		</div>
+        {% block popup %}
+        {% endblock%}
+    </div>
+
+    <div id="cambio" title="Modificar Contraseña">
+        <div id="cam_cla"></div>
+    </div>
+</body>
+</html>
+

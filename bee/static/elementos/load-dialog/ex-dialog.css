@@ -1,0 +1,59 @@
+:host #overlay {
+    width: 50%;
+    font-family: 'RobotoDraft', sans-serif;
+    font-size: 14px;
+}
+
+.card {
+    background-color: #efefef;
+    min-height: 200px;
+    max-height: 600px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.dialogContent {
+    background: white;
+    color: #000;
+}
+
+/*.dialogContent ex-load::shadow ul.errorlist{
+    display: none;
+}*/
+
+.dialogContent ex-load::shadow ul:not(.errorlist){
+    /*display: table;*/
+    list-style: none;
+}
+
+
+/*.dialogContent ex-load::shadow  ul:not(.errorlist) > li{
+    display: table-row;
+}*/
+
+.dialogContent ex-load::shadow  ul:not(.errorlist) > li input{
+    padding: 7px;
+    margin-bottom: 7px;
+}
+
+/*.dialogContent ex-load::shadow  ul:not(.errorlist) > li > label, .dialogContent ex-load::shadow ul:not(.errorlist) > li input{
+    display: table-cell;
+}*/
+
+polyfill-next-selector { content: ':host paper-tabs' }
+ex-load::shadow paper-tabs ,::content paper-tabs {
+/*    width: 350px;*/
+    color: #4555a5;
+    fill: currentcolor;
+    text-transform: uppercase;
+}
+
+polyfill-next-selector { content: ':host paper-tabs::shadow #selectionBar' }
+ex-load::shadow paper-tabs::shadow #selectionBar, ::content paper-tabs::shadow #selectionBar {
+    background-color: currentcolor;
+}
+
+polyfill-next-selector { content: ':host paper-tab::shadow #ink' }
+ex-load::shadow paper-tab::shadow #ink, ::content paper-tab::shadow #ink{
+    color: currentcolor;
+}

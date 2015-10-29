@@ -1,0 +1,33 @@
+<table id="tabla" class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Cliente</th>
+            <th>Email</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for software in s %}
+            <!--tr>
+                <td>
+                    <h3>{{software.nombre}} </h3>
+                </td>
+                <td>
+                    <h3>{{software.nom}} </h3>
+                </td>
+                <td>
+                    <h3>{{software.email}} </h3>
+                </td>
+                <td>
+                    <input type="hidden" id="req" name="req" value="{{ software.id }}">
+                    <div class="center estado">
+                        <span class="center">
+                            {{ software.estado}}
+                        </span>
+                    </div>
+                </td>
+            </tr-->
+        {% endfor %}
+    </tbody>
+</table>

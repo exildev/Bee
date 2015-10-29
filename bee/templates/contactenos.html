@@ -1,0 +1,34 @@
+<!--form action="{% url "contacto"%}"  method="post" id="form">
+	{% csrf_token %}
+	<ul>
+		{{ form.as_ul }}
+	</ul>
+	<input type="submit" class="botones">
+	<input type="reset" class="botones">
+</form-->
+<form action="mailto: pringsistemas@unicartagena.edu.co" id="form">
+    {%csrf_token%}
+    <ul>
+        <li>
+            <div id="describa">E-mail:</div>
+            <input type="email" name="email" required>
+        </li>
+        <li>
+            <div id="describa">Nombre:</div>
+            <input type="text" name="nombre" required>
+        </li>
+        <li>
+            <div id="describa">Celular de contato:</div>
+            <input type="text" name="telefono" required>
+        </li>
+        <li>
+            <div id="describa">Mensaje:</div>
+            <textarea placeholder="Ingrese su Mensaje." id="texto" name="descripcion" required></textarea>
+        </li>
+        
+        <li layout horizontal reverse>
+            <paper-button id="btn-buscar"> <input type="submit" value="Enviar" class="botones"></paper-button>
+            <paper-button ><input type="reset" value="Reestablecer" class="botones"></paper-button>
+        </li>
+    </ul>
+</form>

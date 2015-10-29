@@ -1,0 +1,39 @@
+﻿/*
+select 
+distinct descripcion
+from vista_requerimiento
+where 
+keyword in (select 
+v.nombre|| '-' || c.nombre as keyword
+from bee_peticion as p
+join bee_peticion_horaciones ph
+on (ph.peticion_id = p.id)
+join bee_horacion as h
+on (ph.horacion_id = h.id)
+join bee_verbo as v
+on (h.verbo_id = v.id)
+join bee_horacion_complementos as hc
+on (hc.horacion_id = h.id)
+join bee_complemento as c
+on (hc.complemento_id = c.id))
+;*/
+drop view vista_peticion;
+create view vista_peticion as 
+select 
+row_number() as id,
+p.texto,
+v.id as verbo_id,
+c.id as complemento_id,
+v.nombre|| '-' || c.nombre as keyword
+from bee_peticion as p
+join bee_peticion_horaciones ph
+on (ph.peticion_id = p.id)
+join bee_horacion as h
+on (ph.horacion_id = h.id)
+join bee_verbo as v
+on (h.verbo_id = v.id)
+join bee_horacion_complementos as hc
+on (hc.horacion_id = h.id)
+join bee_complemento as c
+on (hc.complemento_id = c.id)
+;

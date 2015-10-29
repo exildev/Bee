@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>BEE</title>
+  <meta name="description" content="">
+
+  <!-- Mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Chrome / Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="black">
+  <link rel="icon" href="icon.png">
+
+  <!-- Safari / iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
+  <link rel="import" href="/static/elementos/login/ex-login.html">
+  <link rel="stylesheet" href="/static/css/base.css">
+
+  <!-- Web Components -->
+  <script>
+    if ('registerElement' in document
+    && 'createShadowRoot' in HTMLElement.prototype
+    && 'import' in document.createElement('link')
+    && 'content' in document.createElement('template')) {
+      // Native WC support. Do nothing
+    } else {
+      document.write('<script src="/static/bower_components/webcomponentsjs/webcomponents.js"><\/script>');
+    }
+    
+    function modificar_pass(){
+        var df =  $('ex-login#log::shadow #reg').get(0);
+        df = df.getDialogContent();
+        df = df.querySelector('form');
+        $.post( "/usr/add/cliente/", $(df).serialize(),function(data){
+            if(data[0].r){
+                console.info('si');
+                $(df.querySelector('input[name="username"]')).val(data[0].n);
+                $(df.querySelector('input[name="password"]')).val(data[0].c);
+                close_pass();
+                $('ex-login::shadow form#send').submit();
+            }else{
+                console.info('no');
+                alert('uno o varios campos invalidos')
+                $(df).empty().append(data);
+            }
+        });
+    }
+    
+    function close_pass(){
+    	var d= $('ex-login::shadow #reg').get(0);
+        d.toggle();
+    }
+  </script>
+    <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.form.min.js"></script>
+  <style type="text/css">
+  html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  ex-login{
+    width: 320px;
+    height: auto;
+    border: 1px solid #774344;
+  }
+  
+  .centrado {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    *display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+
+#log::shadow #reg::shadow paper-button{
+    width: calc(100% - 13px);
+} 
+  </style>
+</head>
+<body unresolved class="centrado">
+    <ex-login id="log" url='/usr/login/do/' nombre='BEE' csrf="{%csrf_token%}" regval="Registrar Cliente" regurl="/usr/add/cliente/">
+        <div horizontal layout reverse>
+	        <paper-button onclick="modificar_pass()">Aceptar</paper-button>
+	        <paper-button onclick="close_pass()">Cancelar</paper-button>
+	    </div>
+    </ex-login>
+</body>
+</html>

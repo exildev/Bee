@@ -1,0 +1,59 @@
+
+<script src="{{STATIC_URL}}js/jquery-1.11.1.min.js"></script>
+<script src="{{STATIC_URL}}js/jquery.form.min.js"></script>
+<script src="{{STATIC_URL}}js/mostrar_peticion.js"></script>
+<script src="{{ STATIC_URL }}js/dataTables.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/tabla.js" type="text/javascript"></script>
+<style>
+    table.tb {
+      width: 100%;
+      border-top: 2px solid #000;
+      background-color: #fff;
+      border-bottom: 2px solid #000;
+      margin-bottom: 15px;
+    }
+</style>
+
+<div class="menu_buscar">
+    <table class="tb">
+        <tr>
+            <td>
+                <p>{{peticion.peticion}}</p>
+            </td>
+            <td>
+                <div>
+                    {%for horacion in peticion.peticion.horaciones.all%}
+                    <span>
+                        <label>{{horacion.verbo}} - </label>
+                        {%for complemento in horacion.complementos.all%}
+                            <label>{{complemento}}</label>
+                        {%endfor%}
+                    </span>
+                    <br>
+                    {%endfor%}
+                </div>
+            </td>
+            <td>
+                <form action="/buscar/softwares/" method="post" id="form">
+                    <input type="hidden" id="men" value="{{ peticion.peticion }}" name="p">
+                    {%csrf_token%}
+                    <ul class="centrar">
+                        {%for requerimiento in peticion.requerimientos.all%}
+                        <li>
+                            <input type="checkbox" checked name="requerimientos" value="{{requerimiento.requerimiento_id}}"/>
+                            <label>{{requerimiento.verbo}} - </label>
+                            <label>{{requerimiento.complemento}}</label>
+                        </li>
+                        {%endfor%}
+                    </ul>
+                </form>
+            </td>
+            <td>
+                <paper-button ><input type="button" value="Buscar..." class="buscar"></paper-button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="resultado">
+</div>
+<input type="hidden" id="ws_sol_sof" value="{% url "sol_soft" %}">

@@ -1,0 +1,34 @@
+.menu_buscar > div{
+    display: inline-block !important;
+    width: 24% !important;
+    height: 110px !important;
+}
+
+.scroll{
+    overflow: auto !important;
+    height: 100px !important;
+    width: 100px !important;
+}
+.centrar{
+    padding-top: 5% !important;
+}
+/*#resultado{
+    width: 950px !important;
+    height: 500px !important;
+}*/
+
+.estado{
+    padding-top: 25px;
+    padding-right: 30px;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    width : 100px;
+    background-color: yellow;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #b0e0e6;
+    text-align: center;
+}

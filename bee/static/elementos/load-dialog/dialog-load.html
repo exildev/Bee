@@ -1,0 +1,59 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/core-overlay/core-overlay.html">
+<link rel="import" href="../../bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="../../bower_components/paper-shadow/paper-shadow.html">
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower_components/core-tooltip/core-tooltip.html">
+<!--ajax-load-->
+<polymer-element name="ex-load" attributes="url">
+    <template>
+        <core-ajax auto url="{{url}}" handleAs="text" on-core-response="{{onResponse}}"></core-ajax>
+    </template>
+    <script src="ex-load.js"></script>
+</polymer-element>
+
+<!--ex-dialog-->
+<polymer-element name="ex-dialog" attributes="value icon url head fab">
+    <template>
+        <link rel="stylesheet" href="ex-dialog.css">
+        <template if="{{value}}">
+            <paper-button on-tap="{{open}}">
+                <template if="{{icon}}">
+                    <core-icon icon="{{icon}}"></core-icon>
+                </template>
+                {{value}}
+            </paper-button>
+        </template>
+        <template if="{{fab}}">
+            <core-tooltip label="{{fab}}" position="right">
+                <paper-fab mini icon="{{icon}}" on-tap="{{open}}"></paper-fab>
+            </core-tooltip>
+        </template>
+        <core-overlay id="overlay" backdrop>
+            <div class="card" layout vertical>
+                <core-toolbar>
+                    <template if="{{icon}}">
+                        <core-icon icon="{{icon}}"></core-icon>
+                    </template>
+                    <template if="{{head}}">
+                        <div>{{head}}</div>
+                    </template>
+                    <span flex></span>
+                    <core-icon-button icon="close" core-overlay-toggle></core-icon-button>
+                </core-toolbar>
+                <paper-shadow z="2"></paper-shadow>
+                <div class="dialogContent">
+                    <template if="{{url}}">
+                        <ex-load id="dc" url="{{url}}"></ex-load>
+                    </template>
+                    <content></content>
+                </div>
+            </div>
+        </core-overlay>
+    </template>
+    <script src="ex-dialog.js"></script>
+</polymer-element>

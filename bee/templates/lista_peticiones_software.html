@@ -1,0 +1,45 @@
+<table id="tabla_solicitud" class="table">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Email</th>
+            <th>Descipcion</th>
+            <th>Sintagma</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for software in s %}
+            <tr>
+                <td>
+                    <h3>{{software.nombre}} </h3>
+                </td>
+                <td>
+                    <span>
+                        {{software.email}}
+                    </span>
+                </td>
+                <td>
+                    <span>{{software.des}}</span>
+                </td>
+                <td>
+                    {% for o in software.oraciones%}
+                    <span>{{o.verbo}} - {{o.complemento}} </span>
+                    {% endfor %}
+                </td>
+                <td>
+                    <input type="hidden" id="req" name="req" value="{{ software.id }}">
+                    <div class="center estado seleccionar">
+                        <span class="center">
+                            {% if software.estado %}
+                                Desarrollando
+                            {% else %}
+                                No asiganado
+                            {% endif%}
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

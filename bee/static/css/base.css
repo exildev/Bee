@@ -1,0 +1,108 @@
+body{
+    font-family: 'RobotoDraft', sans-serif;
+}
+[main]{
+    background-color: #DDD5D5;
+}
+[drawer]{
+    background-color: #fff;;
+}
+[drawer]::shadow #mainPanel{
+    border-right: 1px solid #774344;    
+}
+[drawer] core-toolbar {
+    background-color: #ad655f;
+    background-image: none;
+}
+
+[drawer] core-menu paper-item {
+    border-bottom: 1px solid #774344;
+}
+
+core-drawer-panel:not([narrow]) #navicon{
+    display: none;
+}
+core-toolbar, ::shadow core-toolbar, ::shadow ::shadow core-toolbar{
+    font-family: 'RobotoDraft', sans-serif;
+    background-color: #774344;
+    color: #fff; 
+    background-image: url(/static/textura.png);
+}
+core-menu, ::shadow core-menu{
+    margin: 0;
+}
+
+paper-item{
+    transition: all .4s;
+}
+
+paper-item::shadow paper-ripple {
+  color:  #774344;
+}
+
+paper-item.core-selected, paper-item:hover{
+  background-color: #9E8080;
+}
+
+paper-item.core-selected, paper-item.core-selected a, paper-item:hover a{
+  color: #fff;
+}
+
+#buscar{
+    padding: 15px;
+}
+paper-item, paper-item  a{
+    text-decoration: none;
+    color: #512D2E;
+}
+
+paper-button, 
+::shadow paper-button,
+::shadow ::shadow paper-button,
+paper-fab,
+::shadow paper-fab{
+    background-color: #9E8080;
+    color: #fff;
+    margin: 7px;
+}
+
+#texto{
+    width: calc(100% - 15px);
+    min-height: 250px;
+    font-family: 'Roboto Draft', sans-serif;
+    font-size: 14px;
+}
+
+#describa{
+    font-weight: bold;
+}
+ul{
+    list-style: none;
+    padding: 0;
+}
+paper-button::shadow #ripple, 
+::shadow paper-button::shadow #ripple,  
+paper-fab::shadow #ripple, 
+::shadow paper-fab::shadow #ripple {
+  color: #774344;
+}
+
+ex-dialog::shadow #overlay{
+    width: 430px;
+}
+
+paper-progress::shadow #progressContainer {
+    background-color: rgba(255,255,255,.4);
+}
+
+paper-progress::shadow #activeProgress {
+    background-color: rgb(173, 101, 95);
+}
+
+paper-progress {
+    display: none;
+}
+
+paper-progress.on {
+    display: block;
+}
